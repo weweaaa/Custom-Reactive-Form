@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LibsComponent } from './libs.component';
+import { FormManagerModule } from './form-manager';
 
 
 
@@ -7,6 +8,6 @@ import { LibsComponent } from './libs.component';
   declarations: [LibsComponent],
   imports: [
   ],
-  exports: [LibsComponent]
+  exports: [FormManagerModule]
 })
 export class LibsModule { }
