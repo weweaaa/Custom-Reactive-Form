@@ -1,20 +1,13 @@
-<form [formGroup]="form">
-  <ng-container *ngFor="let item of dataSource; let i = index;">
-      <!-- ========== Input ========== -->
-      <mat-form-field>
-          <input
-              matInput
-              formControlName="{{ item.id }}"
-              placeholder="{{ item.name }}"
-              [value]="item.value"
-          />
-      </mat-form-field>
-      <br/>
-  </ng-container>
-</form>
-
-<!-- <hr /> -->
-
-<!-- <h4>使用者輸入結果</h4> -->
-<!-- 將結果印在畫面上即時檢查內容是否同步修改 -->
-<!-- <pre>{{ form.value | json }}</pre> -->
+<div>
+  <span>Name</span>
+  <input type="text"
+      [(ngModel)]="info.name"
+      (input)="userInfoChange()" />
+  </div>
+  <div>
+  <span>Age</span>
+  <input
+      type="number"
+      [(ngModel)]="info.age"
+      (input)="userInfoChange()" />
+</div>

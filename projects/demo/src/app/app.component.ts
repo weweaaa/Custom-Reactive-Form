@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ControlItem } from 'projects/libs/src/lib/form-manager/form-manager.model';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,12 @@ import { ControlItem } from 'projects/libs/src/lib/form-manager/form-manager.mod
 export class AppComponent {
 
   // 測試資料
-  controlData: ControlItem[] = [
-    { id: 't1', name: 'test1', value: '' },
-    { id: 't2', name: 'test2', value: '' },
-    { id: 't3', name: 'test3', value: '' },
-  ];
+  userInfo = {
+    name: 'test',
+    age: 888
+  };
+
+  log(event) {
+    console.log(event);
+  }
 }

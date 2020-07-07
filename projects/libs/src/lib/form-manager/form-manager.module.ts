@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormManagerComponent } from './form-manager.component';
 
 @NgModule({
@@ -9,6 +9,7 @@ import { FormManagerComponent } from './form-manager.component';
   exports: [FormManagerComponent],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule,
     ReactiveFormsModule
   ]

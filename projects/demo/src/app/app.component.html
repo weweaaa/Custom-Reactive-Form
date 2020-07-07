@@ -1,5 +1,5 @@
-<lib-form-manager #myform [dataSource]="controlData"></lib-form-manager>
+<lib-form-manager [(ngModel)]="userInfo" (ngModelChange)="log($event)"></lib-form-manager>
 
-<hr/>
+<hr />
 <h4>測試抓取使用者輸入結果</h4>
-<pre>{{ myform.form.value | json }}</pre>
+<pre>{{ userInfo | json }}</pre>
