@@ -1,15 +1,8 @@
 <form [formGroup]="form">
   <ng-container *ngFor="let item of dataSource; let i = index;">
-      <!-- ========== Input ========== -->
-      <mat-form-field>
-          <input
-              matInput
-              formControlName="{{ item.id }}"
-              placeholder="{{ item.name }}"
-              [value]="item.value"
-          />
-      </mat-form-field>
-      <br/>
+    <!-- ========== Input ========== -->
+    <lib-keydown-input formControlName="{{item.id}}" [controlItem]="item"></lib-keydown-input>
+    <br />
   </ng-container>
 </form>
 
