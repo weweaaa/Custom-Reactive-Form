@@ -1,9 +1,8 @@
-import { Component, Input, forwardRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { ControlItem } from '../../form-manager.model';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { BaseControl } from '../base-control';
 
+// 這段一定要在繼承的元件當中定義
 export const KEYDOWN_INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => KeydownInputComponent),
@@ -14,53 +13,26 @@ export const KEYDOWN_INPUT_VALUE_ACCESSOR: any = {
   selector: 'lib-keydown-input',
   templateUrl: './keydown-input.component.html',
   styleUrls: ['./keydown-input.component.scss'],
+
+  // 記得 providers 注入，否則可能出現的錯誤訊息示意如下
+  /*
+      ERROR Error: No value accessor for form control with name: 'xxxxx 此為你設定的 input id'
+          at _throwError (forms.js:3479)
+          at setUpControl (forms.js:3305)
+          at FormGroupDirective.addControl (forms.js:7551)
+          at FormControlName._setUpControl (forms.js:8367)
+          at FormControlName.ngOnChanges (forms.js:8288)
+          at FormControlName.wrapOnChangesHook_inPreviousChangesStorage (core.js:26848)
+          at callHook (core.js:3941)
+          at callHooks (core.js:3901)
+          at executeInitAndCheckHooks (core.js:3842)
+          at refreshView (core.js:11795)
+  */
   providers: [KEYDOWN_INPUT_VALUE_ACCESSOR]
 })
-export class KeydownInputComponent implements OnDestroy, AfterViewInit, ControlValueAccessor {
+export class KeydownInputComponent extends BaseControl {
 
-  @Input() controlItem: ControlItem;
-
-  // [!!!很重要!!!] 這裡預先就先給予初始化 FormControl 物件的動作
-  control: FormControl = new FormControl();
-
-  private _onChange: (val: string) => void;
-  private _onTouch: (val: string) => void;
-
-  private destroy$ = new Subject<any>();
-
-  constructor() { }
-
-  /* 將 訂閱 的動作改為在 畫面生成確定完成後，再來訂閱需要監聽的值改變事件 */
-  ngAfterViewInit(): void {
-    this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => this.noticeValueChange(val));
-  }
-
-  noticeValueChange(val: string) {
-    this._onChange(val);
-    this._onTouch(val);
-  }
-
-  /** 調整 writeValue 裡面的流程 */
-  writeValue(obj: any): void {
-    this.control.setValue(obj);
-  }
-
-  registerOnChange(fn: any): void {
-
-    this._onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-
-    this._onTouch = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? this.control?.disable() : this.control?.enable();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+  constructor() {
+    super();
   }
 }
