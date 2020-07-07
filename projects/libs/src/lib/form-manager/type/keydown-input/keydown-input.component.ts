@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, OnDestroy } from '@angular/core';
+import { Component, Input, forwardRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ControlItem } from '../../form-manager.model';
 import { Subject } from 'rxjs';
@@ -16,11 +16,12 @@ export const KEYDOWN_INPUT_VALUE_ACCESSOR: any = {
   styleUrls: ['./keydown-input.component.scss'],
   providers: [KEYDOWN_INPUT_VALUE_ACCESSOR]
 })
-export class KeydownInputComponent implements OnDestroy, ControlValueAccessor {
+export class KeydownInputComponent implements OnDestroy, AfterViewInit, ControlValueAccessor {
 
   @Input() controlItem: ControlItem;
 
-  control: FormControl;
+  // [!!!很重要!!!] 這裡預先就先給予初始化 FormControl 物件的動作
+  control: FormControl = new FormControl();
 
   private _onChange: (val: string) => void;
   private _onTouch: (val: string) => void;
@@ -29,26 +30,19 @@ export class KeydownInputComponent implements OnDestroy, ControlValueAccessor {
 
   constructor() { }
 
+  /* 將 訂閱 的動作改為在 畫面生成確定完成後，再來訂閱需要監聽的值改變事件 */
+  ngAfterViewInit(): void {
+    this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => this.noticeValueChange(val));
+  }
+
   noticeValueChange(val: string) {
     this._onChange(val);
     this._onTouch(val);
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
+  /** 調整 writeValue 裡面的流程 */
   writeValue(obj: any): void {
-
-    if (!this.control) {
-      this.control = new FormControl(obj);
-
-      this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => this.noticeValueChange(val));
-    } else {
-
-      this.control.setValue(obj);
-    }
+    this.control.setValue(obj);
   }
 
   registerOnChange(fn: any): void {
@@ -62,11 +56,11 @@ export class KeydownInputComponent implements OnDestroy, ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
+    isDisabled ? this.control?.disable() : this.control?.enable();
+  }
 
-    if (isDisabled) {
-      this.control.disable();
-    } else {
-      this.control.enable();
-    }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
