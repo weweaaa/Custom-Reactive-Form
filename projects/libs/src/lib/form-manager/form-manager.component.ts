@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ControlItem } from './form-manager.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lib-form-manager',
@@ -17,7 +17,7 @@ export class FormManagerComponent implements OnInit {
 
     const controlsConfig = v.reduce((obj, { id, value }) => {
 
-      return { ...obj, [id]: [value] };
+      return { ...obj, [id]: [value, [Validators.required]] };
 
     }, {});
 
