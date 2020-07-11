@@ -1,31 +1,41 @@
 import { ControlItem } from '../form-manager.model';
-import { Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Input, AfterViewInit, OnDestroy, Injector } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FormControl, ControlValueAccessor } from '@angular/forms';
+import { FormControl, ControlValueAccessor, AbstractControl, ControlContainer } from '@angular/forms';
 
 export class BaseControl implements ControlValueAccessor, AfterViewInit, OnDestroy {
 
-  // 這裡定義的 Input() 只要繼承此類別的元件，在 Templete 一樣可以接到並使用
   @Input() controlItem: ControlItem;
+  @Input()
+  set formControlName(name: string) {
+    this._formControlName = name;
+    this.outsideContorl = this.injector.get(ControlContainer)?.control?.get(name) as FormControl;
+  }
+  get formControlName() { return this._formControlName; }
+  private _formControlName;
 
   control: FormControl = new FormControl();
+  outsideContorl: AbstractControl;
 
   protected _onChange: (val: string) => void;
   protected _onTouch: (val: string) => void;
 
   protected destroy$ = new Subject<any>();
 
-  constructor() { }
+  constructor(private injector: Injector) { }
 
   ngAfterViewInit(): void {
-    /* 訂閱監聽，就算是繼承但是實際執行過程中，每個元件都是獨立訂閱監聽的*/
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => this.noticeValueChange(val));
   }
 
   noticeValueChange(val: string) {
-    this._onChange(val);
-    this._onTouch(val);
+    if (this._onChange) {
+      this._onChange(val);
+    }
+    if (this._onTouch) {
+      this._onTouch(val);
+    }
   }
 
   writeValue(obj: any): void {
@@ -44,7 +54,6 @@ export class BaseControl implements ControlValueAccessor, AfterViewInit, OnDestr
     isDisabled ? this.control?.disable() : this.control?.enable();
   }
 
-  /* 釋放資源，就算是繼承此類別的元件，在執行過程中都是獨立運作的*/
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
