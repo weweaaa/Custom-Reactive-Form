@@ -1,3 +1,6 @@
+<h3>我是 Keydown Input Custom Form Control 元件</h3>
 <mat-form-field>
-  <input matInput [formControl]="control" [placeholder]="controlItem?.name" autocomplete="no" />
+  <input matInput [formControl]="control" [placeholder]="controlItem?.name" autocomplete="no" required/>
 </mat-form-field>
+
+<pre *ngIf="control" [style]="'color: red'">Keydown-Input FormControl Error => {{ control.errors | json }}</pre>
