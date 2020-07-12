@@ -1,11 +1,12 @@
 <h3>我是 Keydown Input Custom Form Control 元件</h3>
 
 <mat-form-field>
-  <input matInput
-    [formControl]="control"
-    [placeholder]="controlItem?.name"
-    [autocomplete]="'no'"/>
+  <input matInput [formControl]="control" [placeholder]="controlItem?.name" autocomplete='no' />
 </mat-form-field>
 
-<pre *ngIf="outsideContorl" [style]="'color: red'">Keydown-Input FormControl outsideContorl Error => {{ outsideContorl.errors | json }}</pre>
-<pre *ngIf="control" [style]="'color: darkred'">Keydown-Input FormControl control Error => {{ control.errors | json }}</pre>
+<mat-error *ngIf="outsideContorl?.hasError('required')">
+  ＊該欄位不可為空白
+</mat-error>
+
+<!-- <pre *ngIf="outsideContorl" [style]="'color: red'">Keydown-Input FormControl outsideContorl Error => {{ outsideContorl.errors | json }}</pre>
+<pre *ngIf="control" [style]="'color: darkred'">Keydown-Input FormControl control Error => {{ control.errors | json }}</pre> -->
