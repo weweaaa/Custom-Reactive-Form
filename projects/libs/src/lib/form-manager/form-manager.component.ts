@@ -15,9 +15,14 @@ export class FormManagerComponent implements OnInit {
   }
   set dataSource(v: Array<ControlItem>) {
 
-    const controlsConfig = v.reduce((obj, { id, value }) => {
+    const controlsConfig = v.reduce((obj, { id, disabled, value, validatorList }) => {
 
-      return { ...obj, [id]: [value, [Validators.required]] };
+      if (validatorList) {
+        // return { ...obj, [id]: [value, [Validators.required]] };
+        return { ...obj, [id]: [{ value, disabled: !!disabled }, validatorList.map((val) => val.valid)] };
+      } else {
+        return { ...obj, [id]: [{ value, disabled: !!disabled }] };
+      }
 
     }, {});
 
@@ -33,5 +38,4 @@ export class FormManagerComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
 }

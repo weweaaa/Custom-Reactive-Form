@@ -4,9 +4,11 @@
   <input matInput [formControl]="control" [placeholder]="controlItem?.name" autocomplete='no' />
 </mat-form-field>
 
-<mat-error *ngIf="outsideContorl?.hasError('required')">
-  ＊該欄位不可為空白
-</mat-error>
+<ng-container *ngFor="let item of controlItem?.validatorList">
+  <mat-error *ngIf="outsideContorl?.hasError(validString(item.valid))">
+    ＊{{ item.message }}
+  </mat-error>
+</ng-container>
 
 <!-- <pre *ngIf="outsideContorl" [style]="'color: red'">Keydown-Input FormControl outsideContorl Error => {{ outsideContorl.errors | json }}</pre>
 <pre *ngIf="control" [style]="'color: darkred'">Keydown-Input FormControl control Error => {{ control.errors | json }}</pre> -->

@@ -1,5 +1,5 @@
 import { Component, forwardRef, Injector } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { BaseControl } from '../base-control';
 
 // 這段一定要在繼承的元件當中定義
@@ -19,5 +19,16 @@ export class KeydownInputComponent extends BaseControl {
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  validString(valid: Validators) {
+    switch (valid) {
+      case Validators.required:
+        return 'required';
+      default:
+        break;
+    }
+
+    return '';
   }
 }
