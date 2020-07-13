@@ -5,9 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormManagerComponent } from './form-manager.component';
 import { KeydownInputComponent } from './type/keydown-input/keydown-input.component';
 import { SlideCheckedComponent } from './type/slide-checked/slide-checked.component';
+import { CheckBoxListComponent } from './type/check-box-list/check-box-list.component';
 
 @NgModule({
-  declarations: [FormManagerComponent, KeydownInputComponent, SlideCheckedComponent],
+  declarations: [FormManagerComponent, KeydownInputComponent, SlideCheckedComponent, CheckBoxListComponent],
   exports: [FormManagerComponent],
   imports: [
     CommonModule,

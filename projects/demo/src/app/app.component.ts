@@ -25,12 +25,18 @@ export class AppComponent {
     {
       id: 't3',
       name: 'test3',
-      value: '',
+      value: ['3'],
       disabled: false,
-      controlType: ControlType.KeywordInput,
+      controlType: ControlType.CheckBoxList,
+      dataSource: [
+        { key: '1', lable: '1_1' },
+        { key: '2', lable: '2_2' },
+        { key: '3', lable: '3_3' },
+        { key: '4', lable: '4_4' },
+      ],
       validatorList: [
         { message: '欄位不可為空白', valid: Validators.required },
-      ]
+      ],
     },
   ];
 }

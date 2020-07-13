@@ -51,7 +51,7 @@ export class ControlItem<TControlType extends ControlType> {
   name: string;
 
   /** Control 值 */
-  value?: string | boolean;
+  value?: string | boolean | string[];
 
   /** 是否鎖定控制項 */
   disabled: boolean;
@@ -62,19 +62,23 @@ export class ControlItem<TControlType extends ControlType> {
   /** 驗證類型與驗證提示訊息 */
   validatorList?: Array<{ message: string, valid: Validators }>;
 
+  dataSource?: Array<{ key: string; lable: string }>;
+
   constructor(
     id: string,
     name: string,
     disabled: boolean,
     controlType: ControlType,
-    value?: string | boolean,
-    validatorList?: Array<{ message: string, valid: Validators }>
+    value?: string | boolean | string[],
+    dataSource?: Array<{ key: string; lable: string }>,
+    validatorList?: Array<{ message: string, valid: Validators }>,
   ) {
     this.id = id;
     this.name = name;
-    this.value = value;
     this.disabled = disabled;
     this.controlType = controlType;
+    this.value = value;
+    this.dataSource = dataSource;
     this.validatorList = validatorList;
   }
 }

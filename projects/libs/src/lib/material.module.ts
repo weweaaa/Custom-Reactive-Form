@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 
@@ -16,7 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
   exports: [
     MatInputModule,
-    MatSlideToggleModule,   // <--- 因為是當作 Material 統一匯入的 Module，所以新增的時候記得要 export 出來才能使用
+    MatSlideToggleModule,
+    MatListModule,
     MatFormFieldModule
   ]
 })

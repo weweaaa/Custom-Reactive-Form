@@ -1,0 +1,26 @@
+<h3>我是 CheckBoxList Custom Form Control 元件</h3>
+
+  <!-- 多選單勾選 -->
+  <ng-container *ngIf="controlItem?.dataSource">
+    <div style="width: 180px;">
+      <mat-selection-list [formControl]="control">
+        {{ controlItem?.name }}
+        <mat-list-option
+          *ngFor="let r of controlItem?.dataSource"
+          [id]="r.key"
+          [value]="r.key"
+        >
+          {{ r.lable }}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </ng-container>
+
+  <!-- <ng-container *ngFor="let item of controlItem?.validatorList | keyvalue">
+    <mat-error *ngIf="outsideContorl?.hasError(item.key)">
+      ＊{{ item.value.message }}
+    </mat-error>
+  </ng-container>
+
+  <pre *ngIf="outsideContorl">{{ outsideContorl.errors | json }}</pre> -->
+
