@@ -11,7 +11,7 @@ export class AppComponent {
 
   // 測試資料
   controlData: ControlItem<ControlType>[] = [
-    { id: 't1', name: 'test1', value: '', disabled: true, controlType: ControlType.KeywordInput },
+    { id: 't1', name: 'test1', value: true, disabled: false, controlType: ControlType.SlideChecked },
     {
       id: 't2',
       name: 'test2',

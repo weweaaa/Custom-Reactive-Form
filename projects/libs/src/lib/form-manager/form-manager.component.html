@@ -1,8 +1,13 @@
 <form [formGroup]="form">
   <ng-container *ngFor="let item of dataSource; let i = index;">
     <ng-container [ngSwitch]="item.controlType">
+
       <!-- ========== Input ========== -->
       <lib-keydown-input *ngSwitchCase="cType.KeywordInput" formControlName="{{ item.id }}" [controlItem]="item"></lib-keydown-input>
+
+      <!-- ========== SlideChecked ========== -->
+      <lib-slide-checked *ngSwitchCase="cType.SlideChecked" formControlName="{{ item.id }}" [controlItem]="item"></lib-slide-checked>
+
     </ng-container>
     <br />
   </ng-container>

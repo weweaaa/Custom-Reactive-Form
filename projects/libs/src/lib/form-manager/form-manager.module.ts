@@ -4,9 +4,10 @@ import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormManagerComponent } from './form-manager.component';
 import { KeydownInputComponent } from './type/keydown-input/keydown-input.component';
+import { SlideCheckedComponent } from './type/slide-checked/slide-checked.component';
 
 @NgModule({
-  declarations: [FormManagerComponent, KeydownInputComponent],
+  declarations: [FormManagerComponent, KeydownInputComponent, SlideCheckedComponent],
   exports: [FormManagerComponent],
   imports: [
     CommonModule,
