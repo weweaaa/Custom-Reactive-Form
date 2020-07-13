@@ -21,15 +21,4 @@ export class KeydownInputComponent extends BaseControl<ControlType.KeywordInput>
   constructor(injector: Injector) {
     super(injector);
   }
-
-  validString(valid: Validators) {
-    switch (valid) {
-      case Validators.required:
-        return 'required';
-      default:
-        break;
-    }
-
-    return '';
-  }
 }

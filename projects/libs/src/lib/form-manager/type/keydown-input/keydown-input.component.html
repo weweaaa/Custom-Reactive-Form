@@ -4,9 +4,9 @@
   <input matInput [formControl]="control" [placeholder]="controlItem?.name" autocomplete='no' />
 </mat-form-field>
 
-<ng-container *ngFor="let item of controlItem?.validatorList">
-  <mat-error *ngIf="outsideContorl?.hasError(validString(item.valid))">
-    ＊{{ item.message }}
+<ng-container *ngFor="let item of controlItem?.validatorList | keyvalue">
+  <mat-error *ngIf="outsideContorl?.hasError(item.key)">
+    ＊{{ item.value.message }}
   </mat-error>
 </ng-container>
 

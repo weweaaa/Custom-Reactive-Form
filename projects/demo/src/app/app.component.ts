@@ -18,10 +18,15 @@ export class AppComponent {
       value: '',
       disabled: false,
       controlType: ControlType.KeywordInput,
-      validatorList: [
-        { message: '欄位不可為空白', valid: Validators.required }
-      ]
-    },
+      validatorList: {
+        required: {
+          message: '請勿空白'
+        },
+        maxlength: {
+          value: 6, message: '最多輸入 6 個字元'
+        }
+      }
+    } as ControlItem<ControlType.KeywordInput>,
     {
       id: 't3',
       name: 'test3',
@@ -34,9 +39,9 @@ export class AppComponent {
         { key: '3', lable: '3_3' },
         { key: '4', lable: '4_4' },
       ],
-      validatorList: [
-        { message: '欄位不可為空白', valid: Validators.required },
-      ],
-    },
+      validatorList: {
+        minlength: { value: 2, message: '請至少勾選兩個選項' }
+      },
+    } as ControlItem<ControlType.CheckBoxList>,
   ];
 }
