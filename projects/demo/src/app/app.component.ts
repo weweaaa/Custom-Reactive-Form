@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControlItem } from 'projects/libs/src/lib/form-manager/form-manager.model';
+import { ControlItem, ControlType } from 'projects/libs/src/lib/form-manager/form-manager.model';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -11,13 +11,23 @@ export class AppComponent {
 
   // 測試資料
   controlData: ControlItem[] = [
-    { id: 't1', name: 'test1', value: '', disabled: true },
-    { id: 't2', name: 'test2', value: '', disabled: false, validatorList: [{ message: '欄位不可為空白', valid: Validators.required }] },
+    { id: 't1', name: 'test1', value: '', disabled: true, controlType: ControlType.KeywordInput },
+    {
+      id: 't2',
+      name: 'test2',
+      value: '',
+      disabled: false,
+      controlType: ControlType.KeywordInput,
+      validatorList: [
+        { message: '欄位不可為空白', valid: Validators.required }
+      ]
+    },
     {
       id: 't3',
       name: 'test3',
       value: '',
       disabled: false,
+      controlType: ControlType.KeywordInput,
       validatorList: [
         { message: '欄位不可為空白', valid: Validators.required },
       ]

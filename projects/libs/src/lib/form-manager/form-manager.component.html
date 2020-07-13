@@ -1,7 +1,9 @@
 <form [formGroup]="form">
   <ng-container *ngFor="let item of dataSource; let i = index;">
-    <!-- ========== Input ========== -->
-    <lib-keydown-input formControlName="{{ item.id }}" [controlItem]="item"></lib-keydown-input>
+    <ng-container [ngSwitch]="item.controlType">
+      <!-- ========== Input ========== -->
+      <lib-keydown-input *ngSwitchCase="cType.KeywordInput" formControlName="{{ item.id }}" [controlItem]="item"></lib-keydown-input>
+    </ng-container>
     <br />
   </ng-container>
 </form>
@@ -11,8 +13,8 @@
 <!-- <h4>使用者輸入結果</h4> -->
 <!-- 將結果印在畫面上即時檢查內容是否同步修改 -->
 <!-- <pre>{{ form.value | json }}</pre> -->
-<hr/>
-<br/>
+<hr />
+<br />
 <mat-error *ngIf="form.invalid">
   ＊表單驗證失敗
 </mat-error>
@@ -22,4 +24,3 @@
 
 <!-- <pre *ngIf="form" [style]="'color: blue'">FormManager FormGroup Error => {{ form.errors | json }}</pre>
 <pre [style]="'color: darkblue'">FormManager FormGroup valid => {{ form.valid }}</pre> -->
-
