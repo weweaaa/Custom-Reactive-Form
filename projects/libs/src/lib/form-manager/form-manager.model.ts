@@ -5,14 +5,44 @@ export enum ControlType {
   /** 關鍵字 輸入框 */
   KeywordInput = 'KeywordInput',
 
+  /** 勾選 選擇器 */
+  CheckBox = 'CheckBox',
+  /** 開關 選擇器 */
+  SlideChecked = 'SlideChecked',
+
+  /** 日期 選擇器 */
+  DatePicker = 'DatePicker',
+
   /** 下拉式選單 選擇器 */
   DropDownList = 'DropDownList',
+  /** 點選 選擇器 */
+  RadioButtonList = 'RadioButtonList',
+
+  /** 勾選清單 選擇器 */
+  CheckBoxList = 'CheckBoxList',
+}
+
+/** Form Control 值的型別定義 */
+export interface ControlValueType {
+  [ControlType.KeywordInput]: string;
+
+  [ControlType.CheckBox]: boolean;
+
+  [ControlType.SlideChecked]: boolean;
+
+  [ControlType.DatePicker]: string;
+
+  [ControlType.DropDownList]: string;
+
+  [ControlType.RadioButtonList]: string;
+
+  [ControlType.CheckBoxList]: Array<string>;
 }
 
 /**
  * Control 需要使用的物件定義
  */
-export class ControlItem {
+export class ControlItem<TControlType extends ControlType> {
 
   /** Control Key Word */
   id: string;

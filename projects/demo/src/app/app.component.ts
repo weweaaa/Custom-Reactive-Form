@@ -10,7 +10,7 @@ import { Validators } from '@angular/forms';
 export class AppComponent {
 
   // 測試資料
-  controlData: ControlItem[] = [
+  controlData: ControlItem<ControlType>[] = [
     { id: 't1', name: 'test1', value: '', disabled: true, controlType: ControlType.KeywordInput },
     {
       id: 't2',

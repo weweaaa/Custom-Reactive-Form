@@ -13,12 +13,15 @@ export class FormManagerComponent implements OnInit {
   get dataSource() {
     return this._dataSource;
   }
-  set dataSource(v: Array<ControlItem>) {
+  set dataSource(v: Array<ControlItem<ControlType>>) {
 
-    const controlsConfig = v.reduce((obj, { id, disabled, value, validatorList }) => {
+    const controlsConfig = v.reduce((obj, { id, disabled, value, controlType, validatorList }) => {
+
+      if ([ControlType.CheckBox, ControlType.RadioButtonList, ControlType.SlideChecked].includes(controlType)) {
+        value = value ? value : false;
+      }
 
       if (validatorList) {
-        // return { ...obj, [id]: [value, [Validators.required]] };
         return { ...obj, [id]: [{ value, disabled: !!disabled }, validatorList.map((val) => val.valid)] };
       } else {
         return { ...obj, [id]: [{ value, disabled: !!disabled }] };
@@ -29,7 +32,7 @@ export class FormManagerComponent implements OnInit {
     this.form = this.fb.group(controlsConfig);
     this._dataSource = v;
   }
-  private _dataSource: Array<ControlItem>;
+  private _dataSource: Array<ControlItem<ControlType>>;
 
   form: FormGroup;
   readonly cType = ControlType;
