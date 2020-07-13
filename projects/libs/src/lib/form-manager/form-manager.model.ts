@@ -63,9 +63,12 @@ export class ControlItem<TControlType extends ControlType> {
   validatorList?: Array<{ message: string, valid: Validators }>;
 
   constructor(
-    id: string, name: string,
-    disabled: boolean, controlType: ControlType,
-    value?: string, validatorList?: Array<{ message: string, valid: Validators }>
+    id: string,
+    name: string,
+    disabled: boolean,
+    controlType: ControlType,
+    value?: string | boolean,
+    validatorList?: Array<{ message: string, valid: Validators }>
   ) {
     this.id = id;
     this.name = name;
