@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { LibsComponent } from './libs.component';
+import { FormManagerModule } from './form-manager/form-manager.module';
 
 
 
 @NgModule({
-  declarations: [LibsComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [LibsComponent]
+  exports: [FormManagerModule]
 })
 export class LibsModule { }

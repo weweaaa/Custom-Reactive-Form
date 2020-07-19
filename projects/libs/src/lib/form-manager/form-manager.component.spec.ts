@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LibsComponent } from './libs.component';
+import { FormManagerComponent } from './form-manager.component';
 
-describe('LibsComponent', () => {
-  let component: LibsComponent;
-  let fixture: ComponentFixture<LibsComponent>;
+describe('FormManagerComponent', () => {
+  let component: FormManagerComponent;
+  let fixture: ComponentFixture<FormManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LibsComponent ]
+      declarations: [ FormManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LibsComponent);
+    fixture = TestBed.createComponent(FormManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
