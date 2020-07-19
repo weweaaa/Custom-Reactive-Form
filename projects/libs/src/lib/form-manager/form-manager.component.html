@@ -2,10 +2,7 @@
   <ng-container *ngFor="let item of dataSource; let i = index;">
 
     <!-- ========== Input ========== -->
-    <mat-form-field>
-      <input matInput [formControlName]="item.id" [placeholder]="item.name" [matAutocomplete]="false" />
-      <!-- <input matInput [formControlName]="item.id" [placeholder]="item.name" autocomplete="off" /> -->
-    </mat-form-field>
+    <lib-keydown-input formControlName="{{item.id}}" [controlItem]="item"></lib-keydown-input>
     <br />
   </ng-container>
 </form>
