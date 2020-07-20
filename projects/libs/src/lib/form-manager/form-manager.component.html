@@ -9,6 +9,9 @@
       <!-- ========== Select ========== -->
       <lib-select-list *ngSwitchCase="cType.SelectList" formControlName="{{item.id}}" [controlItem]="item"></lib-select-list>
 
+      <!-- ========== CheckBoxList ========== -->
+      <lib-check-box-list *ngSwitchCase="cType.CheckBoxList" formControlName="{{item.id}}" [controlItem]="item"></lib-check-box-list>
+
     </div>
     <br />
   </ng-container>

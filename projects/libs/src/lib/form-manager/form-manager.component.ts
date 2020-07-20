@@ -17,9 +17,9 @@ export class FormManagerComponent implements OnInit {
 
     const controlsConfig = v.reduce((obj, { id, disabled, value }) => {
 
-      return { ...obj, [id]: { value, disabled: !!disabled } };
+      // return { ...obj, [id]: { value, disabled: !!disabled } };
 
-      // return { ...obj, [id]: this.fb.control({ value, disabled: !!disabled }) };
+      return { ...obj, [id]: this.fb.control({ value, disabled: !!disabled }) };
 
     }, {});
 

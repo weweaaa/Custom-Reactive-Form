@@ -27,8 +27,8 @@ export class AppComponent {
     {
       id: 't3',
       name: 'test3',
-      controlType: ControlType.SelectList,
-      value: '2',
+      controlType: ControlType.CheckBoxList,
+      value: ['2'],
       disabled: false,
       dataSource: [
         { key: '1', lable: 'a' },

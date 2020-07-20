@@ -1,0 +1,9 @@
+/* 複寫 Checkbox 外框顏色 */
+/* ::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: violet;
+} */
+
+/* 複寫 CheckBoxList 勾選後填滿的背景色 */
+::ng-deep .mat-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #b8daff !important;
+}

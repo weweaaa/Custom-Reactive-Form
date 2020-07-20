@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     MatInputModule,
     MatSelectModule,
+    MatListModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatFormFieldModule
@@ -22,9 +23,9 @@ import { MatSelectModule } from '@angular/material/select';
   exports: [
     MatInputModule,
     MatSelectModule,
+    MatListModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
-    MatListModule,
     MatFormFieldModule
   ]
 })

@@ -1,0 +1,10 @@
+<ng-container *ngIf="controlItem?.dataSource">
+  <div style="width: 180px;">
+    <mat-selection-list [formControl]="control">
+      {{ controlItem?.name }}
+      <mat-list-option *ngFor="let r of controlItem?.dataSource" [id]="r.key" [value]="r.key">
+        {{ r.lable }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</ng-container>

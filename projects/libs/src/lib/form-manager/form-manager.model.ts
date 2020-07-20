@@ -5,6 +5,19 @@ export enum ControlType {
 
   /** 下拉式選單 選擇器 */
   SelectList = 'SelectList',
+
+  /** 勾選清單 選擇器 */
+  CheckBoxList = 'CheckBoxList',
+}
+
+
+/** 目前支援的 Form Control 的資料型態 */
+export interface ControlValueType {
+  [ControlType.KeywordInput]: string;
+
+  [ControlType.SelectList]: string;
+
+  [ControlType.CheckBoxList]: string[];
 }
 
 /**
@@ -22,7 +35,7 @@ export class ControlItem {
   controlType: ControlType;
 
   /** Control 值 */
-  value?: string;
+  value?: string | string[];
 
   /** 是否隱藏 */
   hidden?: boolean;
@@ -37,7 +50,7 @@ export class ControlItem {
     id: string,
     name: string,
     controlType: ControlType,
-    value?: string,
+    value?: string | string[],
     hidden?: boolean,
     disabled?: boolean,
     dataSource?: Array<{ key: string; lable: string }>,
