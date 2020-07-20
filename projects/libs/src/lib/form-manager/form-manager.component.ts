@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ControlItem } from './form-manager.model';
+import { ControlItem, ControlType } from './form-manager.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -29,6 +29,8 @@ export class FormManagerComponent implements OnInit {
   private _dataSource: Array<ControlItem>;
 
   form: FormGroup;
+
+  readonly cType = ControlType;
 
   constructor(private fb: FormBuilder) { }
 

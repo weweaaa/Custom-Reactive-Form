@@ -4,9 +4,10 @@ import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormManagerComponent } from './form-manager.component';
 import { KeydownInputComponent } from './type/keydown-input/keydown-input.component';
+import { SelectListComponent } from './type/select-list/select-list.component';
 
 @NgModule({
-  declarations: [FormManagerComponent, KeydownInputComponent],
+  declarations: [FormManagerComponent, KeydownInputComponent, SelectListComponent],
   exports: [FormManagerComponent],
   imports: [
     CommonModule,

@@ -1,8 +1,15 @@
 <form [formGroup]="form">
   <ng-container *ngFor="let item of dataSource; let i = index;">
 
-    <!-- ========== Input ========== -->
-    <lib-keydown-input formControlName="{{item.id}}" [controlItem]="item"></lib-keydown-input>
+    <div [ngSwitch]="item.controlType">
+
+      <!-- ========== Input ========== -->
+      <lib-keydown-input *ngSwitchCase="cType.KeywordInput" formControlName="{{item.id}}" [controlItem]="item"></lib-keydown-input>
+
+      <!-- ========== Select ========== -->
+      <lib-select-list *ngSwitchCase="cType.SelectList" formControlName="{{item.id}}" [controlItem]="item"></lib-select-list>
+
+    </div>
     <br />
   </ng-container>
 </form>

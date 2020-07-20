@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -13,12 +14,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     CommonModule,
     MatInputModule,
+    MatSelectModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatFormFieldModule
   ],
   exports: [
     MatInputModule,
+    MatSelectModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatListModule,
