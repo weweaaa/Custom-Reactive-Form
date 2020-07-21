@@ -24,7 +24,8 @@ export class AppComponent {
       value: '',
       disabled: false,
       validatorList: {
-        required: { message: '該欄位不可為空值！' }
+        required: { message: '該欄位不可為空值！' },
+        maxlength: { message: '最多只能輸入兩個字元！', value: 2 }
       }
     },
     {
@@ -37,7 +38,10 @@ export class AppComponent {
         { key: '1', lable: 'a' },
         { key: '2', lable: 'b' },
         { key: '3', lable: 'c' },
-      ]
-    },
+      ],
+      validatorList: {
+        maxArray: { message: '最多只能勾選兩個選項！', value: 2 }
+      }
+    } as ControlItem<ControlType.CheckBoxList>,
   ];
 }

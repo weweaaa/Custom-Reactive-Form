@@ -8,3 +8,9 @@
     </mat-selection-list>
   </div>
 </ng-container>
+
+<ng-container *ngFor="let item of controlItem?.validatorList | keyvalue">
+  <mat-error *ngIf="outsideContorl?.touched && outsideContorl?.hasError(item.key)">
+    ＊{{ item.value.message }}
+  </mat-error>
+</ng-container>

@@ -2,9 +2,8 @@
   <input matInput [formControl]="control" [placeholder]="controlItem?.name" [autocomplete]="'off'" />
 </mat-form-field>
 
-<h4 *ngIf="control.valid || control.invalid">
-  我是 KeydownInputComponent：測試抓取表單驗證狀態，使用 <span style="font-weight:bold;">control.valid</span>
-</h4>
-
-<pre *ngIf="control.valid" style="color: green;">{{ control.valid | json }}</pre>
-<pre *ngIf="control.invalid" style="color: red;">{{ control.valid | json }}</pre>
+<ng-container *ngFor="let item of controlItem?.validatorList | keyvalue">
+  <mat-error *ngIf="outsideContorl?.hasError(item.key)">
+    ＊{{ item.value.message }}
+  </mat-error>
+</ng-container>

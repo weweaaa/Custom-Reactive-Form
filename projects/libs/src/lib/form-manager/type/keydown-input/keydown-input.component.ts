@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Injector } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControl } from '../base-control';
 import { ControlType } from '../../form-manager.model';
@@ -18,7 +18,7 @@ export const KEYDOWN_INPUT_VALUE_ACCESSOR: any = {
 })
 export class KeydownInputComponent extends BaseControl<ControlType.KeywordInput> {
 
-  constructor() {
-    super();
+  constructor(injector: Injector) {
+    super(injector);
   }
 }

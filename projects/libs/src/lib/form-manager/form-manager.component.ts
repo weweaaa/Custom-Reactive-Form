@@ -18,9 +18,9 @@ export class FormManagerComponent implements OnInit {
 
     const controlsConfig = v.reduce((obj, { id, disabled, value, controlType, validatorList }) => {
 
-      // return { ...obj, [id]: [{ value, disabled }, this.getValidMapTable(controlType, validatorList) || []] };
+      return { ...obj, [id]: [{ value, disabled }, this.getValidMapTable(controlType, validatorList) || []] };
 
-      return { ...obj, [id]: this.fb.control({ value, disabled }, this.getValidMapTable(controlType, validatorList) || []) };
+      // return { ...obj, [id]: this.fb.control({ value, disabled }, this.getValidMapTable(controlType, validatorList) || []) };
 
     }, {});
 
@@ -66,6 +66,10 @@ export class FormManagerComponent implements OnInit {
       validators.push(Validators.minLength(validatorList.minlength.value));
     }
 
+    if (validatorList.maxlength) {
+      validators.push(Validators.maxLength(validatorList.maxlength.value));
+    }
+
     if (validatorList.email) {
       validators.push(Validators.email);
     }
@@ -74,15 +78,14 @@ export class FormManagerComponent implements OnInit {
   }
 
   getCheckBoxListValidators(validatorList: ControlValidator[ControlType.CheckBoxList]): ValidatorFn[] {
-    const { maxlength, minlength } = validatorList;
     const validators = [];
 
-    if (maxlength) {
-      validators.push(CustomValidators.maxArray(maxlength.value));
+    if (validatorList.maxArray) {
+      validators.push(CustomValidators.maxArray(validatorList.maxArray.value));
     }
 
-    if (minlength) {
-      validators.push(CustomValidators.minArray(minlength.value));
+    if (validatorList.minArray) {
+      validators.push(CustomValidators.minArray(validatorList.minArray.value));
     }
 
     return validators;

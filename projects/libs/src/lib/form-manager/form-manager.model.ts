@@ -42,9 +42,9 @@ export interface ControlValidator {
 
   [ControlType.CheckBoxList]: {
     /** 勾選指定最少數量 */
-    minlength?: MinLengthValidator
+    minArray?: MinArrayValidator;
     /** 勾選指定最多數量 */
-    maxlength?: MaxLengthValidator
+    maxArray?: MaxArrayValidator;
   };
 }
 
@@ -60,6 +60,17 @@ interface MinLengthValidator extends BaseValidator {
 interface MaxLengthValidator extends BaseValidator {
   value: number;
 }
+
+/** 最小長度驗證 */
+interface MinArrayValidator extends BaseValidator {
+  value: number;
+}
+
+/** 最大長度驗證 */
+interface MaxArrayValidator extends BaseValidator {
+  value: number;
+}
+
 
 /**
  * Control 需要使用的物件定義
