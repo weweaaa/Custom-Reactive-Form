@@ -20,10 +20,51 @@ export interface ControlValueType {
   [ControlType.CheckBoxList]: string[];
 }
 
+
+/** 目前支援的 Form Control 的驗證物件模型 */
+export interface ControlValidator {
+
+  [ControlType.KeywordInput]: {
+    /** 不可為空值 */
+    required?: BaseValidator;
+    /** 限制 最小長度 */
+    minlength?: MinLengthValidator;
+    /** 限制 最大長度 */
+    maxlength?: MaxLengthValidator;
+    /** 限制 信箱 格式 */
+    email?: BaseValidator;
+  };
+
+  [ControlType.SelectList]: {
+    /** 至少選擇一種狀態 */
+    required?: BaseValidator;
+  };
+
+  [ControlType.CheckBoxList]: {
+    /** 勾選指定最少數量 */
+    minlength?: MinLengthValidator
+    /** 勾選指定最多數量 */
+    maxlength?: MaxLengthValidator
+  };
+}
+
+/** 所有驗證類型的 根物件 */
+interface BaseValidator { message?: string; }
+
+/** 最小長度驗證 */
+interface MinLengthValidator extends BaseValidator {
+  value: number;
+}
+
+/** 最大長度驗證 */
+interface MaxLengthValidator extends BaseValidator {
+  value: number;
+}
+
 /**
  * Control 需要使用的物件定義
  */
-export class ControlItem {
+export class ControlItem<TControlType extends ControlType> {
 
   /** Control Key Word */
   id: string;
@@ -46,6 +87,10 @@ export class ControlItem {
   /** Control 初始化資料 [SelectList: array] */
   dataSource?: Array<{ key: string; lable: string }>;
 
+  // 如果 ControlValidator 有沒有定義到 'TControlType' 類型就會出現紅字級以下錯誤訊息
+  //      ErrorMsg：類型 'TControlType' 無法用來為類型 'ControlValidator' 編制索引。
+  validatorList?: ControlValidator[TControlType];
+
   constructor(
     id: string,
     name: string,
@@ -54,6 +99,7 @@ export class ControlItem {
     hidden?: boolean,
     disabled?: boolean,
     dataSource?: Array<{ key: string; lable: string }>,
+    validatorList?: ControlValidator[TControlType],
   ) {
     this.id = id;
     this.name = name;
@@ -62,5 +108,6 @@ export class ControlItem {
     this.hidden = hidden;
     this.disabled = disabled;
     this.dataSource = dataSource;
+    this.validatorList = validatorList;
   }
 }

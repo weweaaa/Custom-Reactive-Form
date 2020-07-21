@@ -2,11 +2,10 @@
 
 <br/>
 <hr/>
-<h4>我是 Demo App Component：測試抓取使用者輸入結果，使用 <span style="font-weight:bold;">form.value</span></h4>
-<pre>{{ myform.form.value | json }}</pre>
-
-<br/>
-<hr/>
-<h4>我是 Demo App Component：測試抓取使用者輸入結果，使用 <span style="font-weight:bold;">form.getRawValue()</span></h4>
+<h4>我是 Demo AppComponent：測試抓取使用者輸入結果，使用 <span style="font-weight:bold;">form.getRawValue()</span></h4>
 <pre>{{ myform.form.getRawValue() | json }}</pre>
+<h4>我是 Demo AppComponent：測試抓取表單驗證狀態，使用 <span style="font-weight:bold;">form.valid</span></h4>
+<pre *ngIf="myform.form.valid" style="color: green;">{{ myform.form.valid | json }}</pre>
+<pre *ngIf="myform.form.invalid" style="color: red;">{{ myform.form.valid | json }}</pre>
+
 

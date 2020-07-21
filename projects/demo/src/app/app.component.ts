@@ -9,7 +9,7 @@ import { ControlItem, ControlType } from 'projects/libs/src/lib/form-manager/for
 export class AppComponent {
 
   // 測試資料
-  controlData: ControlItem[] = [
+  controlData: ControlItem<ControlType>[] = [
     {
       id: 't1',
       name: 'test1',
@@ -23,6 +23,9 @@ export class AppComponent {
       controlType: ControlType.KeywordInput,
       value: '',
       disabled: false,
+      validatorList: {
+        required: { message: '該欄位不可為空值！' }
+      }
     },
     {
       id: 't3',

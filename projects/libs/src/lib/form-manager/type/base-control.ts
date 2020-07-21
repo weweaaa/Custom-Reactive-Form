@@ -7,7 +7,7 @@ import { FormControl, ControlValueAccessor } from '@angular/forms';
 export class BaseControl<TControlType extends ControlType>  implements ControlValueAccessor, AfterViewInit, OnDestroy {
 
   // 這裡定義的 Input() 只要繼承此類別的元件，在 Templete 一樣可以接到並使用
-  @Input() controlItem: ControlItem;
+  @Input() controlItem: ControlItem<ControlType>;
 
   control: FormControl = new FormControl();
 
