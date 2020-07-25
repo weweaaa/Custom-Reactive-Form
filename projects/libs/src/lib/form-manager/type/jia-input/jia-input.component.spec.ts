@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KeydownInputComponent } from './keydown-input.component';
+import { JiaInputComponent } from './jia-input.component';
 
-describe('KeydownInputComponent', () => {
-  let component: KeydownInputComponent;
-  let fixture: ComponentFixture<KeydownInputComponent>;
+describe('JiaInputComponent', () => {
+  let component: JiaInputComponent;
+  let fixture: ComponentFixture<JiaInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ KeydownInputComponent ]
+      declarations: [ JiaInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KeydownInputComponent);
+    fixture = TestBed.createComponent(JiaInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

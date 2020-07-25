@@ -16,18 +16,28 @@ export class FormManagerComponent implements OnInit {
   }
   set dataSource(v: Array<ControlItem<ControlType>>) {
 
-    const controlsConfig = v.reduce((obj, { id, disabled, value, controlType, validatorList }) => {
+    // ====== reduce 作法 ======
+    // const controlsConfig = v.reduce((obj, { id, disabled, defaultValue, controlType, validatorList }) => {
+    // return { ...obj, [id]: this.fb.control({ defaultValue, disabled }, this.getValidMapTable(controlType, validatorList) || []) };
+    // }, {});
 
-      return { ...obj, [id]: [{ value, disabled }, this.getValidMapTable(controlType, validatorList) || []] };
+    // 讓 tslint 忽略下一行警告的寫法
+    // tslint:disable-next-line
 
-      // return { ...obj, [id]: this.fb.control({ value, disabled }, this.getValidMapTable(controlType, validatorList) || []) };
-
-    }, {});
+    // ====== foreach 作法 ======
+    const controlsConfig = {};
+    v.forEach((obj) => {
+      controlsConfig[obj.id] = [{
+        value: obj.defaultValue,
+        disabled: obj.disabled
+      }, this.getValidMapTable(obj.controlType, obj.validatorList) || []];
+    });
 
     this.form = this.fb.group(controlsConfig);
     this._dataSource = v;
   }
   private _dataSource: Array<ControlItem<ControlType>>;
+
 
   form: FormGroup;
 
@@ -41,7 +51,7 @@ export class FormManagerComponent implements OnInit {
   getValidMapTable(controlType: ControlType, validatorList: any): ValidatorFn[] {
     if (validatorList) {
       switch (controlType) {
-        case ControlType.KeywordInput: {
+        case ControlType.JiaInput: {
           return this.getKeywordInputValidators(validatorList);
         }
         case ControlType.CheckBoxList: {
@@ -54,7 +64,7 @@ export class FormManagerComponent implements OnInit {
     }
   }
 
-  getKeywordInputValidators(validatorList: ControlValidator[ControlType.KeywordInput]): ValidatorFn[] {
+  getKeywordInputValidators(validatorList: ControlValidator[ControlType.JiaInput]): ValidatorFn[] {
 
     const validators = [];
 
@@ -63,11 +73,11 @@ export class FormManagerComponent implements OnInit {
     }
 
     if (validatorList.minlength) {
-      validators.push(Validators.minLength(validatorList.minlength.value));
+      validators.push(Validators.minLength(validatorList.minlength.length));
     }
 
     if (validatorList.maxlength) {
-      validators.push(Validators.maxLength(validatorList.maxlength.value));
+      validators.push(Validators.maxLength(validatorList.maxlength.length));
     }
 
     if (validatorList.email) {
@@ -81,11 +91,11 @@ export class FormManagerComponent implements OnInit {
     const validators = [];
 
     if (validatorList.maxArray) {
-      validators.push(CustomValidators.maxArray(validatorList.maxArray.value));
+      validators.push(CustomValidators.maxArray(validatorList.maxArray.length));
     }
 
     if (validatorList.minArray) {
-      validators.push(CustomValidators.minArray(validatorList.minArray.value));
+      validators.push(CustomValidators.minArray(validatorList.minArray.length));
     }
 
     return validators;

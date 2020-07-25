@@ -1,7 +1,7 @@
 /** 目前支援的 FormControl 類型 */
 export enum ControlType {
-  /** 關鍵字 輸入框 */
-  KeywordInput = 'KeywordInput',
+  /** 阿謙版客製化 輸入框 */
+  JiaInput = 'JiadInput',
 
   /** 下拉式選單 選擇器 */
   SelectList = 'SelectList',
@@ -13,7 +13,7 @@ export enum ControlType {
 
 /** 目前支援的 Form Control 的資料型態 */
 export interface ControlValueType {
-  [ControlType.KeywordInput]: string;
+  [ControlType.JiaInput]: string;
 
   [ControlType.SelectList]: string;
 
@@ -24,7 +24,7 @@ export interface ControlValueType {
 /** 目前支援的 Form Control 的驗證物件模型 */
 export interface ControlValidator {
 
-  [ControlType.KeywordInput]: {
+  [ControlType.JiaInput]: {
     /** 不可為空值 */
     required?: BaseValidator;
     /** 限制 最小長度 */
@@ -53,22 +53,22 @@ interface BaseValidator { message?: string; }
 
 /** 最小長度驗證 */
 interface MinLengthValidator extends BaseValidator {
-  value: number;
+  length: number;
 }
 
 /** 最大長度驗證 */
 interface MaxLengthValidator extends BaseValidator {
-  value: number;
+  length: number;
 }
 
 /** 最小長度驗證 */
 interface MinArrayValidator extends BaseValidator {
-  value: number;
+  length: number;
 }
 
 /** 最大長度驗證 */
 interface MaxArrayValidator extends BaseValidator {
-  value: number;
+  length: number;
 }
 
 
@@ -87,7 +87,7 @@ export class ControlItem<TControlType extends ControlType> {
   controlType: ControlType;
 
   /** Control 值 */
-  value?: string | string[];
+  defaultValue?: string | string[];
 
   /** 是否隱藏 */
   hidden?: boolean;
@@ -106,7 +106,7 @@ export class ControlItem<TControlType extends ControlType> {
     id: string,
     name: string,
     controlType: ControlType,
-    value?: string | string[],
+    defaultValue?: string | string[],
     hidden?: boolean,
     disabled?: boolean,
     dataSource?: Array<{ key: string; lable: string }>,
@@ -115,7 +115,7 @@ export class ControlItem<TControlType extends ControlType> {
     this.id = id;
     this.name = name;
     this.controlType = controlType;
-    this.value = value;
+    this.defaultValue = defaultValue;
     this.hidden = hidden;
     this.disabled = disabled;
     this.dataSource = dataSource;

@@ -4,13 +4,13 @@
     <div [ngSwitch]="item.controlType">
 
       <!-- ========== Input ========== -->
-      <lib-keydown-input *ngSwitchCase="cType.KeywordInput" formControlName="{{item.id}}" [controlItem]="item"></lib-keydown-input>
+      <lib-jia-input *ngSwitchCase="cType.JiaInput" [formControlName]="item.id" [controlItem]="item"></lib-jia-input>
 
       <!-- ========== Select ========== -->
-      <lib-select-list *ngSwitchCase="cType.SelectList" formControlName="{{item.id}}" [controlItem]="item"></lib-select-list>
+      <lib-select-list *ngSwitchCase="cType.SelectList" [formControlName]="item.id" [controlItem]="item"></lib-select-list>
 
       <!-- ========== CheckBoxList ========== -->
-      <lib-check-box-list *ngSwitchCase="cType.CheckBoxList" formControlName="{{item.id}}" [controlItem]="item"></lib-check-box-list>
+      <lib-check-box-list *ngSwitchCase="cType.CheckBoxList" [formControlName]="item.id" [controlItem]="item"></lib-check-box-list>
 
     </div>
     <br />
